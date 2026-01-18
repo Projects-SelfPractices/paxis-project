@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: auth-service
+  namespace: argocd
+spec:
+  project: auth-team-project
+  source:
+    repoURL: https://github.com/Projects-SelfPractices/argocd-ms-projects
+    targetRevision: main
+    path: auth-service-gitops/base
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: auth-namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
