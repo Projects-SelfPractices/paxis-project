@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: api-service
+  name: paxis-dev-bootstrap
   namespace: argocd
 spec:
-  project: paxis-project
+  project: default
   source:
-    repoURL: https://github.com/Projects-SelfPractices/argocd-ms-projects
+    repoURL: https://github.com/Projects-SelfPractices/paxis-project.git
     targetRevision: main
-    path: api-service-gitops/base
+    path: projects/paxis/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: api-namespace
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
